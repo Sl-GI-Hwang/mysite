@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="board">
+	<select id="getlist" parameterType="long" resultType="boardvo">
+		<![CDATA[
+			select b.user_no as userNo, 
+				a.name, 
+				b.no, 
+				b.g_no as gNo, 
+				b.title, 
+				b.o_no as oNo, 
+				b.depth, 
+				b.hit, 
+				date_format(b.reg_date, '%Y-%m-%d %h:%i:%s') as regDate, 
+				b.status
+			from user a, board b
+			where a.no  = b.user_no
+			and (status = 0 or status = 1)
+			order by b.g_no desc, b.o_no asc 
+			limit #{_parameter }, 10;
+		]]>		
+	</select>
+	<update id="updateOno" parameterType="boardvo">
+	<![CDATA[
+		update board 
+		  set o_no = o_no+1 
+		  where g_no = #{gNo } and o_no >= #{oNo }
+	]]>
+	</update>
+	<insert id="insertBoard" parameterType="boardvo">
+	<choose>
+		<when test="gNo == null">
+			<![CDATA[
+				insert into board 
+				values (
+					null, 
+					#{title	}, 
+					#{contents	}, 
+					0, 
+					now(), 
+					(select ifnull(max(g_no+1), 1) from board as b) , 
+					1, 
+					0, 
+					#{userNo	}, 
+					1);
+			]]>
+		</when>
+		<otherwise>
+			<![CDATA[
+				insert into board 
+				values (
+					null, 
+					#{title	}, 
+					#{contents	},  
+					0, 
+					now(), 
+					#{gNo	},
+					#{oNo	}, 
+					#{depth	},
+					#{userNo	}, 
+					1);
+			]]>
+		</otherwise>
+	</choose>
+	</insert>
+	<update id="updateHit" parameterType="long">
+		<![CDATA[
+				update board set hit=hit+1 
+				where no = #{_parameter	}
+		]]>
+	</update>
+	<select id="selectContents" parameterType="long" resultType="boardvo">
+		<![CDATA[
+				select no, title, contents, g_no as gNo, o_no as oNo, depth, user_no as userNo from board 
+				where no = #{_parameter	}
+		]]>
+	</select>
+	<update id="modify" parameterType="boardvo">
+		<![CDATA[
+				update board set title= #{title	}, contents= #{contents	} 
+				where no = #{no	} 
+		]]>
+	</update>
+	<select id="getSelect" parameterType="map" resultType="boardvo">
+		<![CDATA[
+				select a.no as user_no, a.name, b.no, b.g_no, b.title, b.o_no, b.depth, b.hit, date_format(b.reg_date, '%Y-%m-%d %h:%i:%s'), b.status
+				from user a, board b
+				where (b.contents like #{kwd } or b.title like #{kwd })
+				and a.no = b.user_no
+				and (status = 0 or status = 1)	
+				order by b.g_no desc, b.o_no asc
+				limit ${currentPage	}, 10;
+		]]>
+	</select>
+	<select id="boardCount" resultType="long">
+		<![CDATA[
+				select count(*) from board
+				where (status = 1 or status = 0);
+		]]>
+	
+	</select>
+	<update id="deletetoZero" parameterType="boardvo">
+		<![CDATA[
+				update board set status = 0 
+				where no = #{no	}; 
+		]]>
+	</update>
+	<select id="parentSearch" parameterType="boardvo" resultType="boardvo">
+		<![CDATA[
+				select no, g_no as gNo, o_no as oNo from board 
+				where g_no = #{gNo	} 
+				and depth = #{depth	}
+				and o_no < #{oNo	} 
+				order by o_no desc 
+				limit 1;
+		]]>
+	</select>
+	<select id="childSearch" parameterType="boardvo" resultType="boardvo">
+		<![CDATA[
+				select no from board 
+				where g_no = ?" + 
+				and depth = ?" + 
+				and o_no = ?; ";
+		]]>
+	</select>
+	
+	
+</mapper>
