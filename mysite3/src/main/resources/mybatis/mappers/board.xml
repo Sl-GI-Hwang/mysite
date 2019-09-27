@@ -133,8 +133,8 @@
 	<update id="invalidateDelete" parameterType="boardvo">
 		<![CDATA[
 				update board 
-				set status = 3, o_no = ? 
-				where no = ; 
+				set status = 3, o_no =  #{oNo	}  
+				where no =#{no	} 
 		]]>
 	</update>
 </mapper>
