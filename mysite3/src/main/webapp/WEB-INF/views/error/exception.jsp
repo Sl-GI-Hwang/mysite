@@ -20,6 +20,8 @@
 					<p>
 						Excption Occurs.<br/>
 					</p>
+					${uri }
+					${exception }
 				</div>
 			</div>
 		</div>
