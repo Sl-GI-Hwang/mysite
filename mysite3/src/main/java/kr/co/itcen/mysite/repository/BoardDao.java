@@ -63,16 +63,13 @@ public class BoardDao {
 	public int chkDelete(BoardVo vo){
 		
 		int stat = 0;
-		
-		List<Long> list = new ArrayList<Long>();
+		List<BoardVo> list = new ArrayList<BoardVo>();
 		
 		// 하위 List에 대한 검색
 		while (true) {
-			long res = 0L;
-			res = sqlSession.selectOne("childSearch", vo);
-			if (res > 0) {
-				list.add(res);
-				vo.setoNo(vo.getoNo()+1);
+			vo.setoNo(vo.getoNo()+1);
+			if (sqlSession.selectOne("childSearch", vo) != null) {
+				list.add(sqlSession.selectOne("childSearch", vo));
 			} else {
 				break;
 			}

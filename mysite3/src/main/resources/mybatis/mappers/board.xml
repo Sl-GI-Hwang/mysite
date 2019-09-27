@@ -107,7 +107,7 @@
 	</update>
 	<select id="parentSearch" parameterType="boardvo" resultType="boardvo">
 		<![CDATA[
-				select no, g_no as gNo, o_no as oNo from board 
+				select no, g_no as gNo, o_no as oNo, depth from board 
 				where g_no = #{gNo	} 
 				and depth = #{depth	}
 				and o_no < #{oNo	} 
