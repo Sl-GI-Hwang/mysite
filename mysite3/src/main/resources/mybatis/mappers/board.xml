@@ -118,11 +118,23 @@
 	<select id="childSearch" parameterType="boardvo" resultType="boardvo">
 		<![CDATA[
 				select no from board 
-				where g_no = ?" + 
-				and depth = ?" + 
-				and o_no = ?; ";
+				where g_no =#{gNo	}  
+				and depth = #{depth	}
+				and o_no = #{oNo	} 
 		]]>
 	</select>
-	
-	
+	<update id="reArray" parameterType="boardvo">
+		<![CDATA[
+				update board set o_no = o_no - 1 
+				where g_no = #{gNo	} 
+				and o_no > #{oNo	} 
+		]]>
+	</update>
+	<update id="invalidateDelete" parameterType="boardvo">
+		<![CDATA[
+				update board 
+				set status = 3, o_no = ? 
+				where no = ; 
+		]]>
+	</update>
 </mapper>
