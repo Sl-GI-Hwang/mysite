@@ -26,8 +26,9 @@ public class UserDao {
 		return count == 1;		
 	}
 	
-	public UserVo get(Long no) {
-		return null;
+	public UserVo get(String email) {
+		UserVo result = sqlSession.selectOne("user.getByEmail", email);
+		return result; 
 	}
 	
 	public UserVo get(UserVo vo) {

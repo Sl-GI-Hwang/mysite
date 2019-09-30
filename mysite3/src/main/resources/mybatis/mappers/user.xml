@@ -11,6 +11,14 @@
 		]]>
 	</insert>
 	
+	<select id="getByEmail" parameterType="string" resultType="uservo">
+		<![CDATA[
+		select no
+		  from user
+		 where email = #{email }	
+		]]>
+	</select>
+	
 	<select id="getByEmailAndPassword1" parameterType="uservo" resultType="uservo">
 		<![CDATA[
 		select no, name 
