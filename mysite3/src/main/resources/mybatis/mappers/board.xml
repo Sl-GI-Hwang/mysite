@@ -92,12 +92,16 @@
 				limit ${currentPage	}, 10;
 		]]>
 	</select>
-	<select id="boardCount" resultType="long">
+	<select id="boardCount" parameterType="string" resultType="long">
 		<![CDATA[
 				select count(*) from board
-				where (status = 1 or status = 0);
+				where (status = 1 or status = 0)
 		]]>
-	
+		<if test="_parameter != null">
+		<![CDATA[
+				and (contents like #{_parameter } or title like #{_parameter });
+		]]>
+		</if>
 	</select>
 	<update id="deletetoZero" parameterType="boardvo">
 		<![CDATA[

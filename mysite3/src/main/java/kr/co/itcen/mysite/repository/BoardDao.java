@@ -123,14 +123,19 @@ public class BoardDao {
 
 	}
 
-	public PageVo getBoardCount(Long currentPage) {
-		Long result = sqlSession.selectOne("board.boardCount");
+	public PageVo getBoardCount(Long currentPage, String keyword) {
+		if (keyword != null) {
+			keyword = "%"+keyword+"%";
+		}
+		Long result = sqlSession.selectOne("board.boardCount", keyword);
 		PageVo pageList = new PageVo();
 		
 		pageList.setBoardCount(result);
 		pageList.setCurrentPage(currentPage);
 		pageList.setPageCount((result/10)+1);
 		pageList.setFirstPage(((currentPage-1) / 10)* 10 + 1);
+		
+		System.out.println(pageList.toString());
 		
 		return pageList;
 	}

@@ -36,12 +36,12 @@ public class BoardService {
 
 	public List<BoardVo> search(String kwd, long currentPage) {
 		// TODO Auto-generated method stub
-		List<BoardVo> list = boardDao.getSelectedList(kwd, currentPage); 
+		List<BoardVo> list = boardDao.getSelectedList(kwd, currentPage);
 		return list;
 	}
 
-	public PageVo findPage(long currentPage) {
-		PageVo pageList = boardDao.getBoardCount(currentPage);
+	public PageVo findPage(long currentPage, String keyword) {
+		PageVo pageList = boardDao.getBoardCount(currentPage, keyword);
 		return pageList;
 	}
 	public void delete(BoardVo vo) {

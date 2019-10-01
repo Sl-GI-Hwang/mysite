@@ -7,15 +7,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.co.itcen.mysite.service.BoardService;
-import kr.co.itcen.mysite.service.GuestbookService;
 import kr.co.itcen.mysite.vo.BoardVo;
-import kr.co.itcen.mysite.vo.GuestbookVo;
 import kr.co.itcen.mysite.vo.UserVo;
 
 @Controller
@@ -25,22 +22,20 @@ public class BoardController {
 	private BoardService boardService;
 	
 	@RequestMapping(value="/list", method=RequestMethod.GET)
-	public String list(
-			@RequestParam(value = "currentPage", defaultValue = "1", required = false) long currentPage ,Model model) {
+	public String list(@RequestParam(value = "kwd", required = false, defaultValue = "") String kwd, 
+			@RequestParam(value = "currentPage", required = false, defaultValue = "1") long currentPage ,Model model) {
 		
-		model.addAttribute("pvo", boardService.findPage(currentPage));
-		model.addAttribute("list", boardService.get(currentPage));
+		if(kwd.equals("")) {
+			model.addAttribute("list", boardService.get(currentPage));
+			kwd = null;
+		} else {
+			model.addAttribute("list", boardService.search(kwd, currentPage));
+			model.addAttribute("keyword", kwd);
+		}
+		model.addAttribute("pvo", boardService.findPage(currentPage, kwd));
 		return "board/list";
 	}
 	
-	@RequestMapping(value="/list", method=RequestMethod.POST)
-	public String list(@RequestParam(value = "kwd", required = false) String kwd, 
-			@RequestParam(value = "currentPage", required = false) long currentPage ,Model model) {
-
-		model.addAttribute("pvo", boardService.findPage(currentPage));
-		model.addAttribute("list", boardService.get(currentPage));
-		return "board/list";
-	}
 	
 	@RequestMapping(value="/write", method=RequestMethod.GET)
 	public String insert() {
@@ -87,13 +82,6 @@ public class BoardController {
 	public String modify(@ModelAttribute BoardVo vo, Model model) {
 		boardService.modify(vo);	
 		return "redirect:/board/list";
-	}
-	
-	@RequestMapping(value="/search", method=RequestMethod.POST)
-	public String search(@RequestParam(value = "kwd", required = false) String kwd, 
-			@RequestParam(value = "currentPage", required = false) long currentPage, Model model) {
-		model.addAttribute("list", boardService.search(kwd, currentPage));
-		return "board/list";
 	}
 	
 	
