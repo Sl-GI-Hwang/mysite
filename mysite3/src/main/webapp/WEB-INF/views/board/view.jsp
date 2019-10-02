@@ -39,7 +39,7 @@
 					<a href="${pageContext.servletContext.contextPath }/board/list">글목록</a>
 					<c:if test='${authUser.no == readboard.userNo }'>
 							<a href="${pageContext.servletContext.contextPath }/board/modify/no=${readboard.no }&currentPage=${currentPage}">글수정</a>
-							<a href="${pageContext.servletContext.contextPath }/board/delete&no=${readboard.no }&gNo=${readboard.gNo}&oNo=${readboard.oNo}&depth=${readboard.depth}">삭제</a>
+							<a href="${pageContext.servletContext.contextPath }/board/delete/no=${readboard.no }&gNo=${readboard.gNo}&oNo=${readboard.oNo}&depth=${readboard.depth}">삭제</a>
 					</c:if>
 					<c:if test='${authUser.no != null }'>
 							<a href="${pageContext.servletContext.contextPath }/board/reply/gNo=${readboard.gNo}&oNo=${readboard.oNo}&depth=${readboard.depth}&currentPage=${currentPage}">답글달기</a>

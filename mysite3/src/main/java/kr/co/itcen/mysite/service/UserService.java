@@ -27,4 +27,8 @@ public class UserService {
 		// TODO Auto-generated method stub
 		return userDao.get(email) != null;
 	}
+
+	public void update(UserVo vo) {
+		userDao.update(vo);		
+	}
 }
