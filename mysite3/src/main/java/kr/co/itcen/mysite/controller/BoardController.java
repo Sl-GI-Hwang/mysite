@@ -1,7 +1,5 @@
 package kr.co.itcen.mysite.controller;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.co.itcen.mysite.service.BoardService;
 import kr.co.itcen.mysite.vo.BoardVo;
-import kr.co.itcen.mysite.vo.UserVo;
 
 @Controller
 @RequestMapping("/board")
@@ -42,15 +39,6 @@ public class BoardController {
 		return "board/write";
 	}
 	
-//	@RequestMapping(value="/write", method=RequestMethod.POST)
-//	public String insert(@ModelAttribute BoardVo vo, HttpSession session) {
-//		UserVo authUser = (UserVo)session.getAttribute("authUser");
-//		vo.setUserNo(authUser.getNo());
-//		
-//		boardService.insert(vo);
-//		return "redirect:/board/list";
-//	}
-//	
 	@RequestMapping(value="/read/no={no}&currentPage={currentPage}", method=RequestMethod.GET)
 	public String read(@PathVariable long no,
 			@PathVariable long currentPage, Model model) {

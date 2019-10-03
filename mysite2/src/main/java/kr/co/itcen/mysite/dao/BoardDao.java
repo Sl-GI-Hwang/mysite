@@ -10,8 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kr.co.itcen.mysite.vo.BoardVo;
-import kr.co.itcen.mysite.vo.GuestbookVo;
-import kr.co.itcen.mysite.vo.UserVo;
 
 public class BoardDao {
 

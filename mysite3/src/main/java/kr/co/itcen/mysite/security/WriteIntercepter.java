@@ -27,7 +27,6 @@ public class WriteIntercepter extends HandlerInterceptorAdapter {
 			Long gNo = Long.parseLong(request.getParameter("gNo"));
 			Long oNo = Long.parseLong(request.getParameter("oNo"));
 			Long depth = Long.parseLong(request.getParameter("depth"));
-			Long currentPage = Long.parseLong(request.getParameter("currentPage"));
 			
 			vo.setgNo(gNo);
 			vo.setoNo(oNo);

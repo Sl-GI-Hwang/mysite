@@ -1,7 +1,6 @@
 package kr.co.itcen.mysite.action.board;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;

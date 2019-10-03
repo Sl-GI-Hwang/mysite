@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-import com.fasterxml.jackson.core.json.JsonReadContext;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import kr.co.itcen.mysite.dto.JSONResult;
