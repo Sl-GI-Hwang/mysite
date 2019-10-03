@@ -14,7 +14,7 @@
 		<c:import url="/WEB-INF/views/includes/header.jsp"/>
 		<div id="content">
 			<div id="board">
-				<form class="board-form" method="post" action="${pageContext.servletContext.contextPath }/board/write">
+				<form class="board-form" method="post" action="${pageContext.servletContext.contextPath }/board/writeUp">
 					<c:choose>
 						<c:when test="${empty list.gNo }">
 						</c:when>

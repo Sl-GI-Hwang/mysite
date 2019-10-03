@@ -42,15 +42,15 @@ public class BoardController {
 		return "board/write";
 	}
 	
-	@RequestMapping(value="/write", method=RequestMethod.POST)
-	public String insert(@ModelAttribute BoardVo vo, HttpSession session) {
-		UserVo authUser = (UserVo)session.getAttribute("authUser");
-		vo.setUserNo(authUser.getNo());
-		
-		boardService.insert(vo);
-		return "redirect:/board/list";
-	}
-	
+//	@RequestMapping(value="/write", method=RequestMethod.POST)
+//	public String insert(@ModelAttribute BoardVo vo, HttpSession session) {
+//		UserVo authUser = (UserVo)session.getAttribute("authUser");
+//		vo.setUserNo(authUser.getNo());
+//		
+//		boardService.insert(vo);
+//		return "redirect:/board/list";
+//	}
+//	
 	@RequestMapping(value="/read/no={no}&currentPage={currentPage}", method=RequestMethod.GET)
 	public String read(@PathVariable long no,
 			@PathVariable long currentPage, Model model) {

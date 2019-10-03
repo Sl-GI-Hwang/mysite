@@ -48,6 +48,10 @@
         	<mvc:mapping path="/user/logout" /> 
     	<bean class="kr.co.itcen.mysite.security.LogoutIntercepter" />
         </mvc:interceptor>
+        <mvc:interceptor>
+        	<mvc:mapping path="/board/writeUp" /> 
+    	<bean class="kr.co.itcen.mysite.security.WriteIntercepter" />
+        </mvc:interceptor>
     </mvc:interceptors>
 
 	<!-- View Resolver -->
