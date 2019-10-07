@@ -14,6 +14,11 @@
       <param-value>/WEB-INF/applicationContext.xml</param-value>
    </context-param>
    
+	<context-param>
+	  <param-name>log4jConfigLocation</param-name>
+	  <param-value>/WEB-INF/log4j.properties</param-value>
+	</context-param>
+   
    <!-- Encoding설정을 위해 Filter를 추가한다. -->
    <filter>
       <filter-name>encodingFilter</filter-name>

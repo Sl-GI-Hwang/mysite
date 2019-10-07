@@ -27,12 +27,41 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http:/
 		   <artifactId>hibernate-validator</artifactId>
 		   <version>4.2.0.Final</version>
 		</dependency>
+		
+		<!-- Logback -->
+		<!-- https://mvnrepository.com/artifact/ch.qos.logback/logback-classic -->
+		<dependency>
+		    <groupId>ch.qos.logback</groupId>
+		    <artifactId>logback-classic</artifactId>
+		    <version>1.2.3</version>
+		    <exclusions>
+		        <exclusion>
+		            <groupId>org.slf4j</groupId>
+		            <artifactId>slf4j-api</artifactId>
+		        </exclusion>
+		    </exclusions>
+		    <scope>compile</scope>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/ch.qos.logback/logback-core -->
+		<dependency>
+		    <groupId>ch.qos.logback</groupId>
+		    <artifactId>logback-core</artifactId>
+		    <version>1.2.3</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
+		<dependency>
+		    <groupId>org.slf4j</groupId>
+		    <artifactId>slf4j-api</artifactId>
+		    <version>1.7.25</version>
+		</dependency>
+		
 		<!-- spring aspect -->
 		<dependency>
     		<groupId>org.springframework</groupId>
     		<artifactId>spring-aspects</artifactId>
     		<version>${org.springframework-version}</version>
 		</dependency>
+		
 		<!-- Spring Context -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -101,6 +130,7 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http:/
 		    <artifactId>jackson-databind</artifactId>
 		    <version>2.9.8</version>
 		</dependency>
+			
       	
 	</dependencies>
 

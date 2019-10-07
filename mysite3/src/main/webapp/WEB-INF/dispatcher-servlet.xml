@@ -33,6 +33,11 @@
 			   </property>
 			</bean>
 		</mvc:message-converters>
+		
+		<!--  Argument Resolvers -->
+		<mvc:argument-resolvers>
+			<bean class="kr.co.itcen.mysite.security.AuthUserHandlerMethodArgumentResolver" />
+		</mvc:argument-resolvers>
 	</mvc:annotation-driven>
 	
 	<!-- 서블릿 컨테이너의 디폴트 서블릿 위임 핸들러 -->
@@ -52,6 +57,13 @@
         	<mvc:mapping path="/board/writeUp" /> 
     	<bean class="kr.co.itcen.mysite.security.WriteIntercepter" />
         </mvc:interceptor>
+        <mvc:interceptor>
+	         <mvc:mapping path="/**"/>
+	         <mvc:exclude-mapping path="/user/auth"/>
+	         <mvc:exclude-mapping path="/user/logout"/>
+	         <mvc:exclude-mapping path="/assets/**"/>
+	    <bean class="kr.co.itcen.mysite.security.AuthInterceptor"/>
+      </mvc:interceptor>
     </mvc:interceptors>
 
 	<!-- View Resolver -->
@@ -71,6 +83,7 @@
 	   </property>
 	</bean>
 
+	<!-- Controller/Exception Scanning -->
 	<context:annotation-config />
 	<context:component-scan base-package="kr.co.itcen.mysite.controller, kr.co.itcen.mysite.exception" />
 </beans>

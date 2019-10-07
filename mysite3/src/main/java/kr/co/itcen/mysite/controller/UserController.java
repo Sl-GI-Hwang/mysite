@@ -3,6 +3,7 @@ package kr.co.itcen.mysite.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import kr.co.itcen.mysite.security.Auth;
+import kr.co.itcen.mysite.security.AuthUser;
 import kr.co.itcen.mysite.service.UserService;
 import kr.co.itcen.mysite.vo.UserVo;
 
@@ -62,17 +65,22 @@ public class UserController {
 		return "user/login";
 	}
 	
+	@Auth("USER")
 	@RequestMapping(value="/update", method=RequestMethod.GET)
-	public String update() {
+	public String update(
+			@AuthUser UserVo authUser, Model model) {
+		authUser = userService.getUser(authUser);
+		model.addAttribute("userVo", authUser);
 		return "user/update";
 	}
-	
+
+	@Auth("USER")
 	@RequestMapping(value="/update", method=RequestMethod.POST)
-	public String update(
-			@ModelAttribute UserVo vo
-			) {
+	public String update(	
+		@ModelAttribute @Valid UserVo vo,
+		BindingResult result) {
 		userService.update(vo);
-		return "";
+		return "user/update";
 	}
 	
 }

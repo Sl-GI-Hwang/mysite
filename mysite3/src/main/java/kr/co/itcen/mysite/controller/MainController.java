@@ -13,21 +13,5 @@ public class MainController {
 	public String index() {
 		return "main/index";
 	}
-		
-	@ResponseBody
-	@RequestMapping("/hello") 
-	public String hello(){
-		return "헬";
-	}
 	
-	@ResponseBody
-	@RequestMapping("/hello2") 
-	public UserVo hello2(){
-		UserVo vo = new UserVo();
-		vo.setNo(10L);
-		vo.setName("안댛역");
-		vo.setEmail("kickingcar@gmail.com");
-		
-		return vo;
-	}
 }

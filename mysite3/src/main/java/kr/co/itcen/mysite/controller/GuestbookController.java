@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import kr.co.itcen.mysite.security.Auth;
 import kr.co.itcen.mysite.service.GuestbookService;
 import kr.co.itcen.mysite.vo.GuestbookVo;
 

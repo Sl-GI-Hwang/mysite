@@ -7,7 +7,7 @@
 		<![CDATA[
 		insert
 		  into user
-		values (null, #{name }, #{email }, #{password }, #{gender }, now())
+		values (null, #{name }, #{email }, #{password }, #{gender }, 'USER', now())
 		]]>
 	</insert>
 	
@@ -21,7 +21,7 @@
 	
 	<select id="getByEmailAndPassword1" parameterType="uservo" resultType="uservo">
 		<![CDATA[
-		select no, name 
+		select no, name, email, gender, role 
 		  from user
 		 where email = #{email }
 		   and password = #{password }		
@@ -30,7 +30,7 @@
 
 	<select id="getByNo" parameterType="Long" resultType="uservo">
 		<![CDATA[
-		select no, name, email, gender
+		select no, name, email, gender, role
 		  from user
 		 where no = #{no}	
 		]]>
@@ -45,7 +45,7 @@
 			]]>
 		</if>	
 		<![CDATA[
-				gender= #{gender },
+				gender= #{gender }
 				where no = #{no };
 		]]>	
 	</update>

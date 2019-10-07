@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import kr.co.itcen.mysite.security.Auth;
 import kr.co.itcen.mysite.service.BoardService;
 import kr.co.itcen.mysite.vo.BoardVo;
 
@@ -33,7 +34,7 @@ public class BoardController {
 		return "board/list";
 	}
 	
-	
+	@Auth("USER")
 	@RequestMapping(value="/write", method=RequestMethod.GET)
 	public String insert() {
 		return "board/write";
@@ -46,6 +47,7 @@ public class BoardController {
 		return "board/view";
 	}
 	
+	@Auth("USER")
 	@RequestMapping(value="/modify/no={no}&currentPage={currentPage}", method=RequestMethod.GET)
 	public String modify(@PathVariable long no,
 			@PathVariable long currentPage, Model model) {

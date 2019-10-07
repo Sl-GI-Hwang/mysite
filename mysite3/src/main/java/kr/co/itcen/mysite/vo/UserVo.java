@@ -1,5 +1,7 @@
 package kr.co.itcen.mysite.vo;
 
+import java.util.Arrays;
+
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -18,7 +20,15 @@ public class UserVo {
 	private String password;
 	private String gender;
 	private String joinDate;
+	private String role;
 	
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
 	private String[] genders = {"male", "female"}; 
 	
 	public String[] getGenders() {
@@ -61,9 +71,11 @@ public class UserVo {
 	public void setJoinDate(String joinDate) {
 		this.joinDate = joinDate;
 	}
+
 	@Override
 	public String toString() {
 		return "UserVo [no=" + no + ", name=" + name + ", email=" + email + ", password=" + password + ", gender="
-				+ gender + ", joinDate=" + joinDate + "]";
+				+ gender + ", joinDate=" + joinDate + ", role=" + role + ", genders=" + Arrays.toString(genders) + "]";
 	}
+	
 }
