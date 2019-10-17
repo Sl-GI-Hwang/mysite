@@ -11,7 +11,7 @@ public class UserService {
 	
 	@Autowired
 	private UserDao userDao;
-	
+
 	public void join(UserVo vo) {
 			userDao.insert(vo);
 	}
