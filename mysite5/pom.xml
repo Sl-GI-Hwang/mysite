@@ -1,0 +1,169 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>kr.co.itcen</groupId>
+    <artifactId>mysite</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  <artifactId>mysite5</artifactId>
+  <packaging>war</packaging>
+  
+  <properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<org.springframework-version>4.3.24.RELEASE</org.springframework-version>
+	</properties>
+
+	<dependencies>
+		<!-- validation -->
+		<dependency>
+		   <groupId>javax.validation</groupId>
+		   <artifactId>validation-api</artifactId>
+		   <version>1.0.0.GA</version>
+		</dependency>
+		
+		<dependency>
+		   <groupId>org.hibernate</groupId>
+		   <artifactId>hibernate-validator</artifactId>
+		   <version>4.2.0.Final</version>
+		</dependency>
+		
+		<!-- Logback -->
+		<!-- https://mvnrepository.com/artifact/ch.qos.logback/logback-classic -->
+		<dependency>
+		    <groupId>ch.qos.logback</groupId>
+		    <artifactId>logback-classic</artifactId>
+		    <version>1.2.3</version>
+		    <exclusions>
+		        <exclusion>
+		            <groupId>org.slf4j</groupId>
+		            <artifactId>slf4j-api</artifactId>
+		        </exclusion>
+		    </exclusions>
+		    <scope>compile</scope>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/ch.qos.logback/logback-core -->
+		<dependency>
+		    <groupId>ch.qos.logback</groupId>
+		    <artifactId>logback-core</artifactId>
+		    <version>1.2.3</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
+		<dependency>
+		    <groupId>org.slf4j</groupId>
+		    <artifactId>slf4j-api</artifactId>
+		    <version>1.7.25</version>
+		</dependency>
+		
+		<!-- spring aspect -->
+		<dependency>
+    		<groupId>org.springframework</groupId>
+    		<artifactId>spring-aspects</artifactId>
+    		<version>${org.springframework-version}</version>
+		</dependency>
+		
+		<!-- Spring Context -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+
+		<!-- Spring Web -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+
+		<!-- Spring MVC -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+
+		<!-- spring jdbc -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+
+		<!-- MyBatis -->
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+			<version>3.2.2</version>
+			</dependency>
+		<dependency>
+		
+		<groupId>org.mybatis</groupId>
+			<artifactId>mybatis-spring</artifactId>
+			<version>1.2.0</version>
+		</dependency>
+
+		<!-- Common DBCP -->
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+			<version>1.4</version>
+		</dependency>
+
+		<!-- Servlet -->
+      	<dependency>
+        	<groupId>javax.servlet</groupId>
+         	<artifactId>javax.servlet-api</artifactId>
+         	<version>3.0.1</version>
+         	<scope>provided</scope>
+      	</dependency>
+      	<dependency>
+        	 <groupId>javax.servlet.jsp</groupId>
+         	<artifactId>jsp-api</artifactId>
+         	<version>2.0</version>
+         	<scope>provided</scope>
+      	</dependency>
+      	
+      	<!-- jackson -->
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-databind</artifactId>
+		    <version>2.9.8</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.module/jackson-module-parameter-names -->
+		<dependency>
+		    <groupId>com.fasterxml.jackson.module</groupId>
+		    <artifactId>jackson-module-parameter-names</artifactId>
+		    <version>2.9.10</version>
+		</dependency>
+
+			
+      	
+	</dependencies>
+
+	<build>
+		<finalName>mysite5</finalName>
+		<sourceDirectory>src/main/java</sourceDirectory>
+		<resources>
+			<resource>
+				<directory>${project.basedir}/src/main/resources</directory>
+				<excludes>
+					<exclude>**/*.java</exclude>
+				</excludes>
+			</resource>
+		</resources>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>tomcat-maven-plugin</artifactId>
+				<configuration>
+					<url>http://192.168.1.88/manager/text</url>
+					<path>/mysite4</path>
+					<username>admin</username>
+					<password>admin</password>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+ 
+</project>
